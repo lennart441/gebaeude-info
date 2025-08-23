@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gebäude-Info für Feuerwehr</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Gebäude-Info</h1>
+    <input id="searchInput" type="text" placeholder="Straße oder Hausnummer suchen..." style="width:100%;max-width:500px;margin-bottom:1rem;font-size:1.2rem;padding:0.7rem;">
+    <select id="filterType" style="margin-bottom:1rem;font-size:1rem;padding:0.5rem;">
+      <option value="">Alle Haustypen</option>
+      <option value="Einfamilienhaus">Einfamilienhaus</option>
+      <option value="Ferienhaus">Ferienhaus</option>
+      <option value="andere Hausart">Andere Hausart</option>
+    </select>
+    <select id="filterHeat" style="margin-bottom:1rem;font-size:1rem;padding:0.5rem;">
+      <option value="">Alle Heizarten</option>
+      <option value="Gas">Gas</option>
+      <option value="Öl">Öl</option>
+      <option value="Pellets">Pellets</option>
+      <option value="Holz">Holz</option>
+      <option value="Strom">Strom</option>
+    </select>
+    <button id="backBtn" style="display:none;margin-bottom:1rem;"></button>
+    <div id="main-content" style="display:flex;gap:2rem;align-items:flex-start;">
+      <div id="table-container" style="flex:1;min-width:220px;"></div>
+      <div id="details" style="display:none;flex:2;max-height:80vh;overflow-y:auto;"></div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

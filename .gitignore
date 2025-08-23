@@ -1,0 +1,3 @@
+# CSV-Dateien ausschließen
+*.csv
+!README.md
