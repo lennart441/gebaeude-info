@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Gebäude Details</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #f7f7f7; font-family: Arial, sans-serif; }
+    .details-container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #bbb; padding: 32px; }
+    h2 { margin-top: 0; }
+    .info-list { margin-top: 24px; }
+    .info-row { margin-bottom: 12px; }
+    .info-key { font-weight: bold; color: #1976d2; }
+    .back-btn { display: inline-block; margin-bottom: 24px; background: #1976d2; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; cursor: pointer; }
+    /* Hausnummern-Styles entfernt, sind jetzt in style.css */
+  </style>
+</head>
+<body>
+  <div class="details-container">
+    <button class="back-btn" onclick="window.location.href='index.html'">Zurück</button>
+    <div id="house-list" class="house-list-horizontal"></div>
+    <h2 id="details-title">Gebäude-Details</h2>
+    <div id="details-content"></div>
+  </div>
+  <script src="details.js"></script>
+</body>
+</html>
