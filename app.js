@@ -72,7 +72,7 @@ function showStreet(street, selectedIdx = null) {
     const q = searchInput.value.trim().toLowerCase();
     houses = houses.filter(row => (row['Hausnummer']||'').toLowerCase().includes(q));
   }
-  houses = houses.sort((a, b) => (a['Hausnummer'] || '').localeCompare(b['Hausnummer'] || ''));
+  houses = houses.sort((a, b) => (a['Hausnummer'] || '').localeCompare(b['Hausnummer'] || '', undefined, {numeric: true, sensitivity: 'base'}));
   const container = document.getElementById('table-container');
   let html = `<h2>${street}</h2><ul class="house-list">`;
   houses.forEach((row, idx) => {
@@ -109,33 +109,10 @@ function showStreet(street, selectedIdx = null) {
 }
 
 function showHouse(row, houses = null, idx = null) {
-  currentView = 'house';
-  setBackBtn('Zurück zu den Hausnummern', () => showStreet(row['Straße']));
-  currentHouse = row;
-  const details = document.getElementById('details');
-  let navHtml = '';
-  if (houses && houses.length > 1 && idx !== null) {
-    navHtml = `<div style="display:flex;gap:1rem;justify-content:center;margin-bottom:1rem;">
-      <button ${idx > 0 ? '' : 'disabled'} onclick="window._showPrevHouse()">← Vorheriges Gebäude</button>
-      <button ${idx < houses.length-1 ? '' : 'disabled'} onclick="window._showNextHouse()">Nächstes Gebäude →</button>
-    </div>`;
-    window._showPrevHouse = function() { showStreet(row['Straße'], idx-1); };
-    window._showNextHouse = function() { showStreet(row['Straße'], idx+1); };
-  }
-  details.innerHTML = navHtml + `<h2>${row['Straße']} ${row['Hausnummer']} <span class="fav-btn" data-id="${row['id']}" style="cursor:pointer;">${favorites.includes(row['id']) ? '★' : '☆'}</span></h2>` + renderCategories(row) + `<button onclick="window.print()" style="margin-top:1.5rem;">Drucken</button>`;
-  details.style.display = 'block';
-  details.scrollTop = 0;
-  if (details.querySelector('.fav-btn')) {
-    details.querySelector('.fav-btn').onclick = function(e) {
-      const id = row['id'];
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-      } else {
-        favorites.push(id);
-      }
-      showHouse(row, houses, idx);
-    };
-  }
+  // Navigation zur neuen Detailseite
+  localStorage.setItem('selectedHouse', JSON.stringify(row));
+  localStorage.setItem('allData', JSON.stringify(allData)); // allData speichern
+  window.location.href = 'details.html';
 }
 
 function renderCategories(row) {
