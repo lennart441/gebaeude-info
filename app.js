@@ -158,7 +158,7 @@ function renderCategories(row) {
 }
 
 function loadCSVFromServer() {
-  fetch('data.csv')
+  fetch('daten2.csv')
     .then(res => res.text())
     .then(text => {
       allData = parseCSV(text);
